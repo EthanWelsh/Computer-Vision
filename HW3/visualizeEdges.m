@@ -16,6 +16,7 @@ function visualizeEdges(edges)
         
     end
    
+figure;
 imshow(disp);
     
 end
