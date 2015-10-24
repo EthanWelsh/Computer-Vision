@@ -1,0 +1,1 @@
+display_pyramid('http://cdn.aarp.net/content/dam/travel/destination-images/california/joshua-tree-national-park/2014-01/1400-joshua-tree-national-park-california-sunrise.imgcache.rev1389236154992.web.1400.720.jpg');
