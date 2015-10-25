@@ -1,9 +1,7 @@
 function [edges] = detectEdges(im, threshold)
 
 im = im2double(rgb2gray(im));
-im = imgaussfilt(im,.5);
-
-% [gradient_magnitude, gradient_direction] = imgradient(im,'prewitt');
+im = imgaussfilt(im, .5);
 
 [height, width] = size(im);
 
@@ -26,8 +24,6 @@ if(nargin==1)
     threshold = average_magnitude * 5;
     
 end
-
-
 
 for r = (2:height-1)
     for c = (2:width-1)

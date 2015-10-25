@@ -18,17 +18,17 @@ function [inds] = matchRawDescriptors(d1, d2)
             distance = distSqr(d1(j), d2(i));
             
             if distance == 0
-                distances(i, 1) = j;
+                distances(i, 1) = i;
                 distances(i, 2) = distance;
                 break;
             elseif distance < distances(i, 2)
-                distances(i, 1) = j;
+                distances(i, 1) = i;
                 distances(i, 2) = distance;
             end
         end
         
         if distances(i, 2) <= threshold
-            inds(inds_index, :) = d1(distances(i, 1), :);
+            inds(inds_index) = distances(i, 1);
             inds_index = inds_index + 1;
         end
         
