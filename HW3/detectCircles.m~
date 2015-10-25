@@ -1,20 +1,34 @@
 function [centers] = detectCircles(im, edges, radius, top_k)
 
-[
+[edge_count, ~] = size(edges);
 
-%For every edge pixel (x,y) :
+h = zeros(size(im));
+
+for n = (1:edge_count)
+    
+    row = edges(n, 1);
+    col = edges(n, 2);
+    
+    for degree = (1:360)
+        a = abs(ceil(col - radius * cosd(degree))) + 1;
+        b = abs(ceil(row - radius * sind(degree))) + 1;
+        h(a, b) = h(a, b) + 1;
+    end
+end
+
+h = imgaussfilt(h);
+
+[sortedValues, sortIndex] = sort(h(:),'descend');
+maxIndex = sortIndex(1:top_k);
+
+centers = [];
 
 
-%For all a:
-%For all b:
-%r = ? ? ?
-%2 + (? ? ?)
-%2
-%H[a,b,r] += 1
-%end
-%end
-%end
-
+for i = (1:top_k)
+    
+    centers(i, 1) = rowsOfMaxes(i);
+    centers(i, 2) = colsOfMaxes(i);
+end
 
 figure; imshow(im); viscircles(centers, radius * ones(size(centers, 1), 1));
 

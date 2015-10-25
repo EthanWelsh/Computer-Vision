@@ -14,21 +14,20 @@ for n = (1:edge_count)
         b = abs(ceil(row - radius * sind(degree))) + 1;
         h(a, b) = h(a, b) + 1;
     end
-    
-    h = imgaussfilt(h);
-    
 end
 
+h = imgaussfilt(h);
 
-maxValue = max(h(:));
-% Find all locations where it exists.
-[rowsOfMaxes colsOfMaxes] = find(h == maxValue);
+[~, sortIndex] = sort(h(:), 'descend');
+maxIndex = sortIndex(1:top_k);
 
 centers = [];
+[R,C] = ind2sub(size(h), maxIndex);
 
-for i = (1:length(rowsOfMaxes))
-   centers(i, 1) = colsOfMaxes(i);
-   centers(i, 2) = rowsOfMaxes(i);
+for i = (1:top_k)
+    
+    centers(i, 1) = R(i);
+    centers(i, 2) = C(i);
 end
 
 figure; imshow(im); viscircles(centers, radius * ones(size(centers, 1), 1));
