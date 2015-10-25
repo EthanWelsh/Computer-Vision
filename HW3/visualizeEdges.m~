@@ -1,6 +1,0 @@
-function visualizeEdges(edges)
-
-    height = max(edges(:, 1))
-    width = max(edges(:, 2))
-    
-end
