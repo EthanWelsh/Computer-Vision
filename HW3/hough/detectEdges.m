@@ -13,9 +13,7 @@ average_magnitude = 0;
 if(nargin==1)
     for r = (2:height-1)
         for c = (2:width-1)
-    
             magnitude = sqrt((im(r, c + 1) - im(r, c - 1))^2 + (im(r + 1, c) - im(r - 1, c))^2);
-            orientation = atand((im(r + 1, c) - im(r - 1, c))/(im(r, c + 1) - im(r, c - 1)));
             average_magnitude = average_magnitude + magnitude;
         end
     end
