@@ -24,9 +24,10 @@ for i = (1:frame_sample_size)
 end
 
 [membership, means, ~] = kmeansML(1500, random_sift_indexes');
+[members_len, ~] = size(membership);
 
 words_to_compare_to_find_max_distance = 300;
-random_membership_indexes = randperm(frame_sample_size * feature_sample_size);
+random_membership_indexes = randperm(members_len);
 
 max_distance = 0;
 
@@ -37,7 +38,7 @@ for i = (1:words_to_compare_to_find_max_distance)
     
     word1_index = membership(random_membership_indexes(i));
     
-    [member_count, ~] = size(membership(membership==word1_index))
+    [member_count, ~] = size(membership(membership==word1_index));
     if member_count < 25
         continue
     end
@@ -47,7 +48,7 @@ for i = (1:words_to_compare_to_find_max_distance)
         word2_index = membership(random_membership_indexes(j));
         
         
-        [member_count, ~] = size(membership(membership==word2_index))
+        [member_count, ~] = size(membership(membership==word2_index));
         if member_count < 25
             continue
         end
@@ -61,13 +62,12 @@ for i = (1:words_to_compare_to_find_max_distance)
         
         if distance_between_words > max_distance
             max_distance = distance_between_words;
-            w1(:) = word1;
-            w2(:) = word2;
+            w1 = word1;
+            w2 = word2;
         end
     end
 end
 
-max_distance
 w1
 w2
 
