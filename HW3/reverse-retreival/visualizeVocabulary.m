@@ -25,9 +25,6 @@ for i = (1:frame_sample_size)
     random_features_indexes = randperm(min(feature_sample_size, desc_len));
     
     for j = (1:length(random_features_indexes))
-        % Hello, future Ethan. Here is where you need to write some code to
-        % also keep track of the position, scale, and orient vectors... As
-        % well as the IM associated with each image? Good luck...
         random_imnames =        [random_imnames;        imname];
         random_descriptors =    [random_descriptors;    descriptors(random_features_indexes(j), :)];
         random_positions =      [random_positions;      positions(random_features_indexes(j), :)];
@@ -90,8 +87,7 @@ else
    load('two.mat', 'w1', 'w2'); 
 end
 
-patches_chosen = 0;
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 w1_patches = (membership==w1)
 
 w1_imnames =        random_imnames(w1_patches, :);
@@ -100,28 +96,40 @@ w1_positions =      random_positions(w1_patches, :);
 w1_scales =         random_scales(w1_patches, :);
 w1_orients =        random_orients(w1_patches, :);
 
-size(w1_imnames)
-size(w1_descriptors)
-size(w1_positions)
-size(w1_scales)
-size(w1_orients)
-
 w1_imnames =        w1_imnames(1:25, :);
 w1_descriptors =    w1_descriptors(1:25, :);
 w1_positions =      w1_positions(1:25, :);
 w1_scales =         w1_scales(1:25, :);
 w1_orients =        w1_orients(1:25, :);
 
-size(w1_imnames)
-size(w1_descriptors)
-size(w1_positions)
-size(w1_scales)
-size(w1_orients)
-
-patches_w1 = [];
-
+figure;
 for i = (1:25)
-    imname = [framesdir '/' w1_imnames(i, :)]; % add the full path
+    imname = [framesdir '/' w1_imnames(i, :)];
     img = imread(imname);
-    patches_w1 = [patches_w1; getPatchFromSIFTParameters(w1_positions(i, :), w1_scales(i, :), w1_orients(i, :), img)];
+    patch = getPatchFromSIFTParameters(w1_positions(i, :), w1_scales(i, :), w1_orients(i, :), rgb2gray(img));
+    
+    subplot(5, 5, i), imshow(patch);
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+w2_patches = (membership==w2)
+
+w2_imnames =        random_imnames(w2_patches, :);
+w2_descriptors =    random_descriptors(w2_patches, :);
+w2_positions =      random_positions(w2_patches, :);
+w2_scales =         random_scales(w2_patches, :);
+w2_orients =        random_orients(w2_patches, :);
+
+w2_imnames =        w2_imnames(1:25, :);
+w2_descriptors =    w2_descriptors(1:25, :);
+w2_positions =      w2_positions(1:25, :);
+w2_scales =         w2_scales(1:25, :);
+w2_orients =        w2_orients(1:25, :);
+
+figure;
+for i = (1:25)
+    imname = [framesdir '/' w2_imnames(i, :)];
+    img = imread(imname);
+    patch = getPatchFromSIFTParameters(w2_positions(i, :), w2_scales(i, :), w2_orients(i, :), rgb2gray(img));
+    
+    subplot(5, 5, i), imshow(patch);
 end
