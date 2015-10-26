@@ -3,12 +3,12 @@ load('code/twoFrameData', 'im1', 'im2', 'positions1','orients1','scales1','descr
 disp(['Please select the region that you would like to recognize ' ...
           'in the second image']);
     
-oninds = selectRegion(im2, positions2);
+oninds = selectRegion(im1, positions1);
 
 patch_sifts = [];
 
 for i = (1:length(oninds))
-    patch_sifts(i, :) = descriptors2(i, :);
+    patch_sifts(i, :) = descriptors1(i, :);
 end
 
 common_indexs = matchRawDescriptors(patch_sifts, descriptors2)'
