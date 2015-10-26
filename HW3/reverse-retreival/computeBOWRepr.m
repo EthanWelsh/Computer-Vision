@@ -3,7 +3,7 @@ function [bow] = computeBOWRepr(descriptors, means)
     [~, vocab_size] = size(means);
     [descriptor_count, ~] = size(descriptors);
     
-    bow = zeros(vocab_size);
+    bow = zeros(vocab_size, 1);
     
     % For every descriptor...
     for i = (1:descriptor_count)    
