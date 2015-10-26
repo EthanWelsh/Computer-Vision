@@ -17,7 +17,6 @@ random_orients =        [];
 for i = (1:frame_sample_size)
     % Get the file name of a random frame
     fname = [siftdir '/' fnames(random_frame_indecies(i)).name];
-    
     load(fname, 'imname', 'descriptors', 'positions', 'scales', 'orients');
     
     [desc_len, ~] = size(descriptors);
@@ -58,7 +57,6 @@ for i = (1:words_to_compare_to_find_max_distance)
     end
 
     for j = (1:words_to_compare_to_find_max_distance)
-
         word2_index = membership(random_membership_indexes(j));
 
         [member_count, ~] = size(membership(membership==word2_index));
@@ -78,9 +76,8 @@ for i = (1:words_to_compare_to_find_max_distance)
         end
     end
 end
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-w1_patches = (membership==w1)
+w1_patches = (membership==w1);
 
 w1_imnames =        random_imnames(w1_patches, :);
 w1_descriptors =    random_descriptors(w1_patches, :);
@@ -103,7 +100,7 @@ for i = (1:25)
     subplot(5, 5, i), imshow(patch);
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-w2_patches = (membership==w2)
+w2_patches = (membership==w2);
 
 w2_imnames =        random_imnames(w2_patches, :);
 w2_descriptors =    random_descriptors(w2_patches, :);
