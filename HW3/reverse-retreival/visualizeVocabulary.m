@@ -32,12 +32,8 @@ for i = (1:frame_sample_size)
     end
 end
 
-if exist('centers.mat', 'file') == 2
-    load('centers.mat', 'membership', 'means');
-else
-    [membership, means, ~] = kmeansML(1500, random_descriptors');
-    save('centers.mat', 'membership', 'means');
-end
+[membership, means, ~] = kmeansML(1500, random_descriptors');
+save('centers.mat', 'membership', 'means');
     
 [members_len, ~] = size(membership);
 
