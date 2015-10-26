@@ -39,52 +39,44 @@ else
     [membership, means, ~] = kmeansML(1500, random_descriptors');
     save('centers.mat', 'membership', 'means');
 end
-
-if exist('two.mat', 'file') ~= 2
     
-    [members_len, ~] = size(membership);
+[members_len, ~] = size(membership);
 
-    words_to_compare_to_find_max_distance = 300;
-    random_membership_indexes = randperm(members_len);
+words_to_compare_to_find_max_distance = 300;
+random_membership_indexes = randperm(members_len);
 
-    max_distance = 0;
+max_distance = 0;
+w1 = [];
+w2 = [];
 
-    w1 = [];
-    w2 = [];
+for i = (1:words_to_compare_to_find_max_distance)
+    word1_index = membership(random_membership_indexes(i));
 
-    for i = (1:words_to_compare_to_find_max_distance)
+    [member_count, ~] = size(membership(membership==word1_index));
+    if member_count < 25
+        continue
+    end
 
-        word1_index = membership(random_membership_indexes(i));
+    for j = (1:words_to_compare_to_find_max_distance)
 
-        [member_count, ~] = size(membership(membership==word1_index));
+        word2_index = membership(random_membership_indexes(j));
+
+        [member_count, ~] = size(membership(membership==word2_index));
         if member_count < 25
             continue
         end
 
-        for j = (1:words_to_compare_to_find_max_distance)
+        word1 = random_descriptors(word1_index, :);
+        word2 = random_descriptors(word2_index, :);
 
-            word2_index = membership(random_membership_indexes(j));
+        distance_between_words = dist2(word1, word2);
 
-            [member_count, ~] = size(membership(membership==word2_index));
-            if member_count < 25
-                continue
-            end
-
-            word1 = random_descriptors(word1_index, :);
-            word2 = random_descriptors(word2_index, :);
-
-            distance_between_words = dist2(word1, word2);
-
-            if distance_between_words > max_distance
-                max_distance = distance_between_words;
-                w1 = word1_index;
-                w2 = word2_index;
-            end
+        if distance_between_words > max_distance
+            max_distance = distance_between_words;
+            w1 = word1_index;
+            w2 = word2_index;
         end
     end
-    save('two.mat', 'w1', 'w2');
-else
-   load('two.mat', 'w1', 'w2'); 
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
