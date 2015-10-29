@@ -1,4 +1,4 @@
-examples = 1;
+examples = 3;
 query_size = 5;
 
 siftdir = ('~/Downloads/sift/');
@@ -18,7 +18,6 @@ bows = [];
 % Load saved vocabular file
 load('centers.mat', 'membership', 'means');
 
-frame_count = 100;
 
 img_names = [];
 
@@ -31,9 +30,6 @@ for i = (1:frame_count)
     bows(i, :) = bow;
 end
 
-img_names
-
-
 for example = (1:examples)
   
     results = []
@@ -45,6 +41,7 @@ for example = (1:examples)
     
     figure;
     imshow(query_img);
+    figure;
     
     query_bow = computeBOWRepr(descriptors, means);
     
