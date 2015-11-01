@@ -46,19 +46,16 @@ for example = (1:examples)
     query_bow = computeBOWRepr(descriptors, means);
     
     for frame = (1:frame_count)
-        frame_bow = bows(i, :);
+        frame_bow = bows(frame, :);
         results = [results; frame, compareSimilarity(query_bow, frame_bow)];
     end
     
-    results = sortrows(results', 2);
+    results = sortrows(results, -2);
     
     for similar_image = (1:query_size)
-        sim_index = results(2, similar_image);
-     
-        sim_img = imread([framesdir '/' img_names(sim_index, :)]);
-        
+        sim_index = results(similar_image, 1);
+        sim_img = imread([framesdir '/' img_names(sim_index, :)]); 
         subplot(1, query_size, similar_image), imshow(sim_img);
-        
     end
     
 end

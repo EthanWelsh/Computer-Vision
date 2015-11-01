@@ -4,7 +4,7 @@ function [centers] = detectCircles(im, edges, radius, top_k)
 
 quant_value = 2;
 
-[height width] = size(im);
+[height, width] = size(im);
 height = ceil(height/quant_value);
 width = ceil(width/quant_value);
 
