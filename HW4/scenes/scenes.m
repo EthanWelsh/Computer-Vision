@@ -4,3 +4,6 @@ means = getBOW(train);
 im = imread(train(1).path);
 
 pyramid = computeSPMHistogram(im, means);
+
+
+
