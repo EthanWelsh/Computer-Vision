@@ -4,6 +4,7 @@ function [means] = getBOW(training_data)
     
     for i = (1 : length(training_data))
 
+        %training_data(i).path
         img = imread(training_data(i).path);
         
         if size(img, 3) == 3

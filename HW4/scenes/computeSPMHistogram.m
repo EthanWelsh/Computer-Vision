@@ -3,6 +3,12 @@ function [pyramid] = computeSPMHistogram(im, codebook_centers)
     [height, width] = size(im);
 
     means = codebook_centers';
+    
+    
+    if size(im, 3) == 3
+        im = rgb2gray(im);
+    end
+    
     [frames, descriptors] = vl_sift(single(im));
         
     level_0 = getHistogram(descriptors, means);
@@ -87,9 +93,8 @@ function [pyramid] = computeSPMHistogram(im, codebook_centers)
     end
     
     level_2 = [getHistogram(q1_descriptors, means) getHistogram(q2_descriptors, means) getHistogram(q3_descriptors, means) getHistogram(q4_descriptors, means) getHistogram(q5_descriptors, means) getHistogram(q6_descriptors, means) getHistogram(q7_descriptors, means) getHistogram(q8_descriptors, means) getHistogram(q9_descriptors, means) getHistogram(q10_descriptors, means) getHistogram(q11_descriptors, means) getHistogram(q12_descriptors, means) getHistogram(q13_descriptors, means) getHistogram(q14_descriptors, means) getHistogram(q15_descriptors, means) getHistogram(q16_descriptors, means)];
-    
     pyramid = [level_0 level_1 level_2];
-    size(pyramid)
+    
 end
     
     
