@@ -9,7 +9,7 @@ function [labels] = findLabelsKNN(pyramids_train, pyramids_test, labels_train, k
         for j = (1 : length(pyramids_train))
             dist = dist2(pyramids_test{i}, pyramids_train{j});
             distances(j, 1) = sum(sum(dist));
-            distances(j, 2) = labels_train(j);
+            distances(j, 2) = labels_train{j};
         end
         
         nearest = sortrows(distances, 1);
