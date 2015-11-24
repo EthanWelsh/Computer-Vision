@@ -41,20 +41,17 @@ while length(pos_imgs) ~= length(neg_imgs)
 end
 
 feats = [];
-labels = [];
+labels = {};
 
 for i = (1 : length(neg_imgs))
     feat = vl_hog(single(pos_imgs{i}), 8);
     feats = [feats; feat(:)'];
-    labels = [labels; '+'];
+    labels{length(labels) + 1} = '+';
         
     feat = vl_hog(single(neg_imgs{i}), 8);
     feats = [feats; feat(:)'];
-    labels = [labels; '-'];
+    labels{length(labels) + 1} = '-';
 end
-
-size(feats)
-size(labels)
 
 model = fitcecoc(feats, labels);
 save('model.mat', 'model')

@@ -24,18 +24,15 @@ for image_index = (1 : length(test_images))
     
     for c = (1:10:width - 96)
         for r = (1:10:height - 160)
-            
             crop = imcrop(image, [c r 95 159]);
             
-            size(crop)
-            
             feat = vl_hog(single(crop), 8);
+            prediction = predict(model, feat(:)');
             
-            if predict(model, feat(:)') == '+';
+            if prediction{1} == '+';
                 pedestrian = 1;
-                
-                figure;
-                imshow(crop);
+                %figure;
+                %imshow(crop);
             end
         end
     end
