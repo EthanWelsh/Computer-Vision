@@ -28,7 +28,7 @@ for i = (1 : length(pos_paths))
 end
 
 [pos_height, pos_width] = size(rgb2gray(imread(pos_paths{1})));
-while length(pos_imgs) ~= length(neg_imgs)
+while length(pos_imgs) * 4 > length(neg_imgs)
     rand_index = rand_int(1, length(neg_paths));
     rand_img = rgb2gray(imread(neg_paths{rand_index}));
     
@@ -43,15 +43,34 @@ end
 feats = [];
 labels = {};
 
-for i = (1 : length(neg_imgs))
+for i = (1 : length(pos_imgs))
     feat = vl_hog(single(pos_imgs{i}), 8);
     feats = [feats; feat(:)'];
     labels{length(labels) + 1} = '+';
-        
+end
+
+for i = (1 : length(neg_imgs) / 2)
     feat = vl_hog(single(neg_imgs{i}), 8);
     feats = [feats; feat(:)'];
     labels{length(labels) + 1} = '-';
 end
 
-model = fitcecoc(feats, labels);
-save('model.mat', 'model')
+model_1 = fitcecoc(feats, labels);
+feats = [];
+labels = {};
+
+for i = (1 : length(pos_imgs))
+    feat = vl_hog(single(pos_imgs{i}), 8);
+    feats = [feats; feat(:)'];
+    labels{length(labels) + 1} = '+';
+end
+
+for i = (length(neg_imgs) / 2 : length(neg_imgs))
+    feat = vl_hog(single(neg_imgs{i}), 8);
+    feats = [feats; feat(:)'];
+    labels{length(labels) + 1} = '-';
+end
+
+model_2 = fitcecoc(feats, labels);
+
+save('model.mat', 'model_1', 'model_2')
