@@ -4,7 +4,6 @@ function [pyramid] = computeSPMHistogram(im, codebook_centers)
 
     means = codebook_centers';
     
-    
     if size(im, 3) == 3
         im = rgb2gray(im);
     end
@@ -96,12 +95,3 @@ function [pyramid] = computeSPMHistogram(im, codebook_centers)
     pyramid = [level_0 level_1 level_2];
     
 end
-    
-    
-    
-    
-    
-    
-    
-    
-    

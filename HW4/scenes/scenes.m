@@ -1,4 +1,4 @@
-[train, test] = get_data('~/Desktop/CS1699/HW/HW4/scenes/scene_categories', .50);
+[train, test] = get_data('~/Desktop/CS1699/HW/HW4/scenes/scene_categories', .15);
 means = getBOW(train);
 
 keys = {'bedroom', 'CALsuburb', 'industrial', 'kitchen', 'livingroom', 'MITcoast', 'MITforest', 'MIThighway', 'MITinsidecity', 'MITmountain', 'MITopencountry', 'MITstreet', 'MITtallbuilding', 'PARoffice', 'store'};

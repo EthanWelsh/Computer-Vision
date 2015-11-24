@@ -7,8 +7,8 @@ function [labels] = findLabelsKNN(pyramids_train, pyramids_test, labels_train, k
         distances = zeros(length(pyramids_train), 2);
         
         for j = (1 : length(pyramids_train))
-            dist = dist2(pyramids_test{i}, pyramids_train{j});
-            distances(j, 1) = sum(sum(dist));
+            dist = dist2(pyramids_test{i}(:)', pyramids_train{j}(:)');
+            distances(j, 1) = dist;
             distances(j, 2) = labels_train{j};
         end
         
