@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------------- Part I -------------------------------------------------------------------------------------
+Interface One:
+- Daniel Craig: 3 queries
+- Obama: 2 queries
+
+Inteface Two:
+- Picture of Field: not located; 6 queries
+  + I managed to narrow the picture down to mostly images of other fields. After that, there were too many feilds with similar attribute and it was hard to 'whittle' any more down than that.
+- Picture of Unknown Man: not located: 6 queries
+  + I disagree with this images' description. The man in question did not have bushy eye brows, and he had only the faintest hin of a beard.
+
+Interface Three:
+- Picture of Shoes with Fruit on Them: not located; 6 queries
+  + Shoes were a lot harder for me than faces were.
+
+Overall Impressions: I found the concept behind Whittle Search to be interesting, although I think that the interface could use a bit of work. Oftentimes, I found that the attributes it was asking about to be confusing: what does it mean for a picture to have more 'perspective' or 'diagonal'? Nonetheless, I was surprised by its power, and especially with people where the similarities are often so similar (just think about trying to describe to an unknown person to a friend).
+
+------------------------------------------------------------------------------------- Part II ------------------------------------------------------------------------------------
+
+- Using the decaf features, with a random sample of 30 pictures within each category, I got an accuracy of 43.28%.
